@@ -11,7 +11,7 @@ class AuthService {
     const user: any = await User.findOne({ where: { email } });
     if (!user) throwUnauthorizedError();
 
-    PasswordService.checkPassword(password, user.password);
+    await PasswordService.checkPassword(password, user.password);
     const { password: _, ...userWithoutPassword } = user.dataValues;
 
     const token = JwtService.createToken(userWithoutPassword);
