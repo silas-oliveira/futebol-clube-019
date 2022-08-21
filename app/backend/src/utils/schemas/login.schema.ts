@@ -14,6 +14,7 @@ const loginSchema = Joi.object({
         'any.required': STRING_EMPTY,
         'string.empty': STRING_EMPTY,
         'string.email': INCORRECT_EMAIL,
+        'string.base': INCORRECT_EMAIL,
       }),
   password:
     Joi.string()
@@ -22,6 +23,7 @@ const loginSchema = Joi.object({
       .messages({
         'any.required': STRING_EMPTY,
         'string.empty': STRING_EMPTY,
+        'string.base': INCORRECT_EMAIL,
       }),
 }).required();
 
