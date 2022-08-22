@@ -1,5 +1,5 @@
 import bcrypt = require('bcryptjs');
-import { throwUnauthorizedError } from '../../utils/throwError/throw.error';
+import { throwEmailOrPasswordIncorrect } from '../../utils/throwError/throw.error';
 
 class PasswordService {
   static encryptPassword(password: string) {
@@ -12,7 +12,7 @@ class PasswordService {
     const comparePassword = await bcrypt.compare(password, passwordDb);
     console.log('compare', comparePassword);
 
-    if (!comparePassword) throwUnauthorizedError();
+    if (!comparePassword) throwEmailOrPasswordIncorrect();
   }
 }
 
