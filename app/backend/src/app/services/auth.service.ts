@@ -15,9 +15,9 @@ class AuthService {
     if (!user) throwEmailOrPasswordIncorrect();
 
     await PasswordService.checkPassword(password, user.password);
-    const { password: _, ...userWithoutPassword } = user.dataValues;
+    const { id, role, username } = user;
 
-    const token = JwtService.createToken(userWithoutPassword);
+    const token = JwtService.createToken({ id, email, role, username });
     return token;
   }
 
