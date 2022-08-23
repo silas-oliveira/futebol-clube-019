@@ -27,5 +27,5 @@ export const throwExpiredOrInvalidToken = throwError(
 
 export const throwEmailOrPasswordIncorrect = throwError(
   'throwEmailOrPasswordIncorrect',
-  'Incorrect email or password',
+  'Incorrect email or password/401',
 );
