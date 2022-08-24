@@ -5,7 +5,7 @@ import IUser from '../interfaces/IUser';
 
 const secret = process.env.JWT_SECRET || 'super_secret';
 
-class jwtService {
+class JwtService {
   static createToken(user: Omit<IUser, 'password'>) {
     const token = jwt.sign({ data: user }, secret, {
       expiresIn: '7h',
@@ -24,4 +24,4 @@ class jwtService {
   }
 }
 
-export default jwtService;
+export default JwtService;
