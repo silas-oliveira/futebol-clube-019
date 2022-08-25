@@ -4,7 +4,7 @@ import LoginValidateController from '../../app/controllers/login.validate.contro
 const loginValidateRouter = Router();
 
 loginValidateRouter.get('/', async (req, res, _next) => {
-  const result = await LoginValidateController.verifyToken(req.headers);
+  const result = LoginValidateController.verifyToken(req.headers);
   return res.status(200).json({ role: result });
 });
 
