@@ -16,11 +16,11 @@ Matches.init({
   homeTeamGoals: { type: DataTypes.INTEGER },
   awayTeam: { type: DataTypes.INTEGER, key: 'away_team' },
   awayTeamGoals: { type: DataTypes.INTEGER },
-  inProgress: { type: DataTypes.INTEGER },
+  inProgress: { type: DataTypes.BOOLEAN },
 }, {
   underscored: true,
   sequelize: db,
-  modelName: 'matchs',
+  modelName: 'matches',
   timestamps: false,
 });
 

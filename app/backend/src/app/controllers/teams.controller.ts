@@ -1,13 +1,13 @@
 import TeamsService from '../services/teams.service';
 
 class TeamsController {
-  static list() {
-    const allTeams = TeamsService.list();
+  static async list() {
+    const allTeams = await TeamsService.list();
     return allTeams;
   }
 
-  static get({ id }: { [key: string]: string }) {
-    const team = TeamsService.get(id);
+  static async get({ id }: { [key: string]: string }) {
+    const team = await TeamsService.get(id);
     return team;
   }
 }
