@@ -29,3 +29,8 @@ export const throwEmailOrPasswordIncorrect = throwError(
   'throwEmailOrPasswordIncorrect',
   'Incorrect email or password/401',
 );
+
+export const throwEqualTeams = throwError(
+  'throwEqualTeams',
+  'It is not possible to create a match with two equal teams/401',
+);

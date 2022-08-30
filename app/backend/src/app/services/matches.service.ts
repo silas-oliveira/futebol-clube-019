@@ -1,6 +1,7 @@
 import QueryString = require('qs');
 import Clubs from '../../database/models/club';
 import Matches from '../../database/models/match';
+import { throwEqualTeams } from '../../utils/throwError/throw.error';
 
 class MatchesService {
   static async list(inProgress: any) {
@@ -18,6 +19,7 @@ class MatchesService {
   // verificar como esse simples add adiciona todas as chaves relacionadas a associação;
   static async add(body: QueryString.ParsedQs) {
     const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = body;
+    if (homeTeam === awayTeam) throwEqualTeams();
     const result = await Matches.create({
       homeTeam,
       homeTeamGoals,
