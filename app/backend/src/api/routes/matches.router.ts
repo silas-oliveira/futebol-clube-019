@@ -8,6 +8,11 @@ matchesRouter.patch('/:id/finish', async (req, res, _next) => {
   return res.status(200).json(result);
 });
 
+matchesRouter.patch('/:id', async (req, res, _next) => {
+  const result = await MatchesController.updateInProgress(req.params, req.body);
+  return res.status(200).json(result);
+});
+
 matchesRouter.get('/', async (req, res, _next) => {
   const result = await MatchesController.list(req.query);
   return res.status(200).json(result);

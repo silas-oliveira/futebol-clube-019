@@ -41,6 +41,21 @@ class MatchesService {
     );
   }
 
+  static async updateInProgress(id: string, body: { [key: string]: number }) {
+    const { homeTeamGoals, awayTeamGoals } = body;
+    await Matches.update(
+      {
+        homeTeamGoals,
+        awayTeamGoals,
+      },
+      {
+        where: {
+          id,
+        },
+      },
+    );
+  }
+
   static async checkingTeamCredentials(homeTeam: number, awayTeam: number) {
     if (homeTeam === awayTeam) throwEqualTeams();
     const verifyExistHomeTeam = await Clubs.findByPk(homeTeam);

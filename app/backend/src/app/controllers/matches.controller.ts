@@ -25,6 +25,14 @@ class MatchesController {
     await MatchesService.update(id);
     return { message: 'Finished' };
   }
+
+  static async updateInProgress(
+    { id }: { [key: string]: string },
+    body: { [key: string]: number },
+  ) {
+    await MatchesService.updateInProgress(id, body);
+    return { message: 'Updated' };
+  }
 }
 
 export default MatchesController;
