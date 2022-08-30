@@ -17,13 +17,14 @@ class MatchesService {
   // verificar como esse simples add adiciona todas as chaves relacionadas a associação;
   static async add(body: QueryString.ParsedQs) {
     const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = body;
-    await Matches.create({
+    const result = await Matches.create({
       homeTeam,
-      awayTeam,
       homeTeamGoals,
+      awayTeam,
       awayTeamGoals,
       inProgress: true,
     });
+    return result;
   }
 }
 
