@@ -1,6 +1,7 @@
 import { IncomingHttpHeaders } from 'http';
 import * as QueryString from 'qs';
 import { throwTokenNotFound } from '../../utils/throwError/throw.error';
+import { ITeamRequisition } from '../interfaces/ITeam';
 import AuthService from '../services/auth.service';
 import MatchesService from '../services/matches.service';
 
@@ -10,7 +11,7 @@ class MatchesController {
     return allMatches;
   }
 
-  static async add(body: QueryString.ParsedQs, headers: IncomingHttpHeaders) {
+  static async add(body: ITeamRequisition, headers: IncomingHttpHeaders) {
     const { authorization } = headers;
     if (authorization === undefined) return throwTokenNotFound();
     AuthService.validateToken(authorization);

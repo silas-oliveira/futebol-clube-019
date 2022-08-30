@@ -1,7 +1,7 @@
-import QueryString = require('qs');
 import Clubs from '../../database/models/club';
 import Matches from '../../database/models/match';
-import { throwEqualTeams } from '../../utils/throwError/throw.error';
+import { throwEqualTeams, throwTeamNotExist } from '../../utils/throwError/throw.error';
+import { ITeamRequisition } from '../interfaces/ITeam';
 
 class MatchesService {
   static async list(inProgress: any) {
@@ -17,9 +17,9 @@ class MatchesService {
   }
 
   // verificar como esse simples add adiciona todas as chaves relacionadas a associação;
-  static async add(body: QueryString.ParsedQs) {
+  static async add(body: ITeamRequisition) {
     const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = body;
-    if (homeTeam === awayTeam) throwEqualTeams();
+    await MatchesService.checkingTeamCredentials(homeTeam, awayTeam);
     const result = await Matches.create({
       homeTeam,
       homeTeamGoals,
@@ -39,6 +39,13 @@ class MatchesService {
         },
       },
     );
+  }
+
+  static async checkingTeamCredentials(homeTeam: number, awayTeam: number) {
+    if (homeTeam === awayTeam) throwEqualTeams();
+    const verifyExistHomeTeam = await Clubs.findByPk(homeTeam);
+    const verifyExistAwayTeam = await Clubs.findByPk(awayTeam);
+    if (!verifyExistHomeTeam || !verifyExistAwayTeam) throwTeamNotExist();
   }
 }
 

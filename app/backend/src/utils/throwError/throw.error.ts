@@ -34,3 +34,8 @@ export const throwEqualTeams = throwError(
   'throwEqualTeams',
   'It is not possible to create a match with two equal teams/401',
 );
+
+export const throwTeamNotExist = throwError(
+  'throwTeamNotExist',
+  'There is no team with such id!/404',
+);
