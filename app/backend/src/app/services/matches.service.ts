@@ -10,8 +10,9 @@ class MatchesService {
         { model: Clubs, as: 'teamAway', attributes: { exclude: ['id'] } },
       ],
     });
-    return inProgress ? allMatches.filter((m) =>
-      `${m.inProgress}` === inProgress) : allMatches;
+    return inProgress
+      ? allMatches.filter((m) => `${m.inProgress}` === inProgress)
+      : allMatches;
   }
 
   // verificar como esse simples add adiciona todas as chaves relacionadas a associação;
@@ -25,6 +26,17 @@ class MatchesService {
       inProgress: true,
     });
     return result;
+  }
+
+  static async update(id: string) {
+    await Matches.update(
+      { inProgress: false },
+      {
+        where: {
+          id,
+        },
+      },
+    );
   }
 }
 

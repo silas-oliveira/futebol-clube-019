@@ -17,6 +17,11 @@ class MatchesController {
     const allMatches = await MatchesService.add(body);
     return allMatches;
   }
+
+  static async update({ id }: { [key: string]: string }) {
+    await MatchesService.update(id);
+    return { message: 'Finished' };
+  }
 }
 
 export default MatchesController;
