@@ -1,6 +1,6 @@
 import jwt = require('jsonwebtoken');
 import 'dotenv/config';
-import { throwExpiredOrInvalidToken } from '../../utils/throwError/throw.error';
+import { throwExpiredOrInvalidToken, throwInvalidToken } from '../../utils/throwError/throw.error';
 import IUser from '../interfaces/IUser';
 
 const secret = process.env.JWT_SECRET || 'super_secret';
@@ -20,6 +20,15 @@ class JwtService {
       return data;
     } catch (error) {
       throwExpiredOrInvalidToken();
+    }
+  }
+
+  static validateTokenByInsertMatch(token: string) {
+    try {
+      const { data }: any = jwt.verify(token, secret);
+      return data;
+    } catch (error) {
+      throwInvalidToken();
     }
   }
 }

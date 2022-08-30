@@ -12,7 +12,7 @@ export const throwUnauthorizedError = throwError(
 
 export const throwInvalidToken = throwError(
   'InvalidToken',
-  'Invalid Token/401/token',
+  'Token must be a valid token/401',
 );
 
 export const throwTokenNotFound = throwError(
