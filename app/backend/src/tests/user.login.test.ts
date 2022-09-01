@@ -39,3 +39,14 @@ describe('Users', () => {
     })
   })
 });
+
+describe('Matchers', () => {
+  describe('Testa a funcao list', () => {
+    it('Retorna status 200', async () => {
+      const response = await chai.request(app)
+        .get('/matches')
+
+        expect(response.status).to.equal(200)
+    })
+  })
+})

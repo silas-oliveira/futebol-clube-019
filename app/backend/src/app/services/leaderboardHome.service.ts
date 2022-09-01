@@ -30,18 +30,12 @@ WHERE m.in_progress = 0 GROUP BY t.team_name) AS dd) AS d`, { type: QueryTypes.S
   static async orderByRequirements() {
     const listOfLeaderBoard: any = await LeaderboardHomeService.list();
     const order = listOfLeaderBoard
-      .sort((a: any, b: any): any => {
-      // if (a.totalPoints < b.totalPoints) return 1;
-      // if (a.totalPoints > b.totalPoints) return -1;
-        if (b.totalPoints !== a.totalPoints) return b.totalPoints - a.totalPoints;
-        if (a.totalVictories < b.totalVictories) return 1;
-        if (a.totalVictories > b.totalVictories) return -1;
-        if (a.goalsBalance < b.goalsBalance) return 1;
-        if (a.goalsBalance > b.goalsBalance) return -1;
-        if (a.goalsFavor < b.goalsFavor) return 1;
-        if (a.goalsFavor > b.goalsFavor) return -1;
-        if (a.goalsOwn < b.goalsOwn) return 1;
-        if (a.goalsOwn > b.goalsOwn) return -1;
+      .sort((a: any, b: any) => {
+        if (a.totalPoints !== b.totalPoints) return b.totalPoints - a.totalPoints;
+        if (a.totalVictories !== b.totalVictories) return b.totalVictories - a.totalVictories;
+        if (a.goalsBalance !== b.goalsBalance) return b.goalsBalance - a.goalsBalance;
+        if (a.goalsFavor !== b.goalsFavor) return b.goalsFavor - a.goalsFavor;
+        if (a.goalsOwn !== b.goalsOwn) return b.goalsOwn - a.goalsOwn;
         return 0;
       });
     return order;
